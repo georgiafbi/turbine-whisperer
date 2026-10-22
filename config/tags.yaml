@@ -1,0 +1,44 @@
+# Tag map: Modbus holding registers -> engineering values.
+# engineering value = raw_register * scale
+# Generic, illustrative values for a small simulated gas turbine. Not from any real unit.
+
+unit_id: 1
+
+tags:
+  speed_pct:
+    address: 0
+    description: Gas generator speed
+    units: "%"
+    scale: 0.01        # raw 0..12000 -> 0.00..120.00 %
+    writable: false
+    alarms: { high: 104.0, high_high: 107.0 }
+
+  egt_degF:
+    address: 1
+    description: Exhaust gas temperature
+    units: degF
+    scale: 0.1         # raw 0..20000 -> 0.0..2000.0 degF
+    writable: false
+    alarms: { high: 1250.0, high_high: 1300.0 }
+
+  fuel_valve_pct:
+    address: 2
+    description: Fuel valve position
+    units: "%"
+    scale: 0.01
+    writable: false
+
+  lube_oil_psi:
+    address: 3
+    description: Lube oil header pressure
+    units: psig
+    scale: 0.1
+    writable: false
+    alarms: { low: 15.0, low_low: 10.0 }
+
+  speed_setpoint_pct:
+    address: 10
+    description: Speed setpoint (only via approved propose_setpoint)
+    units: "%"
+    scale: 0.01
+    writable: true
